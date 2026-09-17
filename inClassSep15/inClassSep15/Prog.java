@@ -5,15 +5,15 @@ import java.util.Random;
 public class Prog {
 
 	public static void main(String[] args) {
-		int[] numbers = new int[20];
+		int[] numbers = new int[100];
 		int location;
 		
-		loadArrayRandom(numbers,20,10);
-		showArray(numbers);
+		loadArrayRandom(numbers,100,1);
+		//showArray(numbers);
 		bubbleSort(numbers);
 		showArray(numbers);
 		
-		location = linearSearch(numbers,20);
+		location = linearSearch(numbers,5);
 		System.out.printf("The value is at %d\n", location);
 	}
 	
@@ -65,10 +65,22 @@ public class Prog {
 		}	
 	}
 	
-	public static int binarySearch(int[] theArray,int value) {
-		int location=0;
+	public static int binarySearch(int[] array,int value) {
+		int left = 0;
+		int right = array.length - 1;
 		
-		return location;
+		while(left <= right) {
+			int location = (left + right) / 2;
+			
+			if(array[location] == value) {
+				return location;
+			}else if (array[location] < value) {
+				left = location + 1;
+			}else {
+				right = location - 1;
+			}
+		}
+		return -1;
 	}
 
 }
